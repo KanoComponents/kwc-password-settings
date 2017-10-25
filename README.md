@@ -2,6 +2,9 @@
 
 A small component to allow users to update their password.
 
+## TODO:
+* Implement tests to check the interactions with the component. Since the validations rely on listening for the key up, it's not clear how best these can be tested.
+
 ## Installation
 Clone this repository.
 Run `bower i`
