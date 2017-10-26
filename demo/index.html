@@ -26,7 +26,9 @@
             <h3>Basic kwc-password-settings demo</h3>
             <demo-snippet>
                 <template is="dom-bind" id="demo">
-                    <kwc-password-settings on-update-password="updatePassword">
+                    <kwc-password-settings updated="[[updated]]"
+                                           updating="[[updating]]" 
+                                           on-update-password="updatePassword">
                     </kwc-password-settings>
                     <div class="response">
                         Password is: [[password]]
@@ -36,7 +38,12 @@
             <script>
                 document.addEventListener('WebComponentsReady', () => {
                     demo.updatePassword = function (e) {
-                        demo.password = e.detail.password;
+                        demo.updating = true;
+                        demo.password = e.detail.new;
+                        window.setTimeout(() => {
+                            demo.updating = false;
+                            demo.updated = true;
+                        }, 1500);
                     }
                 });
             </script>
