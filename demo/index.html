@@ -25,26 +25,24 @@
         <div class="vertical-section-container centered">
             <h3>Basic kwc-password-settings demo</h3>
             <demo-snippet>
-                <template is="dom-bind" id="demo">
-                    <kwc-password-settings updated="[[updated]]"
-                                           updating="[[updating]]" 
-                                           on-update-password="updatePassword">
-                    </kwc-password-settings>
-                    <div class="response">
-                        Password is: [[password]]
-                    </div>
-                </template>
+                <kwc-password-settings id="demo">
+                </kwc-password-settings>
+                <div class="response" id="response">
+                    Password is:
+                </div>
             </demo-snippet>
             <script>
                 document.addEventListener('WebComponentsReady', () => {
-                    demo.updatePassword = function (e) {
+                    const demo = document.getElementById('demo');
+                    const response = document.getElementById('response');
+                    demo.addEventListener('update-password', (e) => {
                         demo.updating = true;
-                        demo.password = e.detail.new;
+                        response.innerText = `Password is: ${e.detail.new}`;
                         window.setTimeout(() => {
                             demo.updating = false;
                             demo.updated = true;
                         }, 1500);
-                    }
+                    });
                 });
             </script>
         </div>
